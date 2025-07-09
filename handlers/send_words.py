@@ -4,8 +4,6 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
-from filters.admin_checker import IsAdmin
-from config.conf import admins_ids
 from back.db_back import get_user_dict, user_exists, add_user
 from back.gpt_back import find_relevant_words
 from back.bot_back import create_words_message
@@ -14,9 +12,6 @@ from keyboards.menu_keyboard import menu_kb, find_button
 
 
 send_words_router = Router()
-send_words_router.message.filter(
-    IsAdmin(admins_ids)
-)
 
 
 @send_words_router.message(F.text == find_button)

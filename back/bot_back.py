@@ -37,7 +37,7 @@ def create_start_message() -> str:
         '  👉🏼 Нажми <b>/cancel</b> чтобы отменить любую операцию\n\n'
         'Пока твой словарь пустой, добавь первое слово'
         'с помощью /add_word 😉\n\n'
-        'Будут вопросы - обращайся <b>@botrqst</b>'
+        'Разработчик: <b>@botrqst</b>'
     )
 
     return txt
@@ -70,14 +70,24 @@ def create_all_words_message(
 def create_not_admin_message() -> str:
     """Creates the message for non-admin users"""
 
-    github_link = 'https://github.com/yuramayer/lang_dict_tg'
-    link_name = 'github.com/yuramayer/lang_dict_tg'
+    github_link = 'https://github.com/yuramayer/eng-rus-dict'
+    link_name = 'github.com/yuramayer/eng-rus-dict'
 
     txt = (
-        '📖 Бот-словарик по ивриту\n\n'
-        'Бот предназначен для частного использования.\n'
+        '📖 Бот-словарик по английскому языку\n\n'
         'Разработчик бота: <b>@botrqst</b> 👨🏻‍💻\n'
         f'Код бота на GitHub: <a href="{github_link}">{link_name}</a>'
+    )
+
+    return txt
+
+
+def create_plug_message() -> str:
+    """Created the plug message when bot doesn't understand user"""
+
+    txt = (
+        'Не понял тебя 🤷🏼‍♀️\n\n'
+        'Пожалуйста, воспользуйся меню или командами!'
     )
 
     return txt

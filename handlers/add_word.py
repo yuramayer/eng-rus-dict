@@ -4,8 +4,6 @@ from aiogram import Router, F
 from aiogram.filters import Command
 from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram.fsm.context import FSMContext
-from filters.admin_checker import IsAdmin
-from config.conf import admins_ids
 from states import AddWord
 from keyboards.approve_keyboard import approve_kb
 from keyboards.menu_keyboard import menu_kb, add_button
@@ -13,9 +11,6 @@ from back.db_back import add_word_for_user, user_exists, add_user
 from back.bot_back import check_word_message
 
 add_word_router = Router()
-add_word_router.message.filter(
-    IsAdmin(admins_ids)
-)
 
 
 @add_word_router.message(F.text == add_button)
@@ -27,7 +22,7 @@ async def ask_word(message: Message, state: FSMContext):
     if not user_exists(chat_id):
         add_user(chat_id)
         await message.answer('Словарь готов к работе 💫')
-    await message.answer('Какое слово добавить?',
+    await message.answer('Какое 🇷🇺 слово добавить?',
                          reply_markup=ReplyKeyboardRemove())
     await state.set_state(AddWord.add_word)
 
@@ -36,7 +31,7 @@ async def ask_word(message: Message, state: FSMContext):
 async def ask_translation(message: Message, state: FSMContext):
     """Bot asks translation for the new word"""
     await state.update_data(add_word=message.text)
-    msg = f'Отправь перевод для слова: "{message.text}"'
+    msg = f'Отправь 🇬🇧 перевод для слова: "{message.text}"'
     await message.answer(msg, reply_markup=ReplyKeyboardRemove())
     await state.set_state(AddWord.add_translation)
 
