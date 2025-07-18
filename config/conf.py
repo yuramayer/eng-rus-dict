@@ -31,6 +31,3 @@ elif STAND == 'PROD':
     BOT_TOKEN = PROD_BOT_TOKEN
 
 admins_ids = [int(admin_id) for admin_id in ADMINS.split(',')]
-
-if not os.path.exists(DB_PATH):
-    os.makedirs(DB_PATH)
