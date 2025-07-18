@@ -12,8 +12,6 @@ class MessageLog:
     """
     Structured data object representing bot interaction event
 
-    :param timestamp: ISO UTC timestamp of the message,
-        default value - current timestamp
     :param chat_id: TG message chat id
     :param message_id: ID of the message in the Telegram
     :param direction: Direction of the message,
@@ -24,9 +22,9 @@ class MessageLog:
     :param method: Bot's method or handler name
     :param event_type: Type of the interaction:
         "message", "command", "error", etc
+    :param timestamp: ISO UTC timestamp of the message,
+        default value - current timestamp
     """
-    timestamp: str = field(
-        default_factory=lambda: datetime.now(timezone.utc).isoformat())
     chat_id: int
     message_id: int
     direction: str
@@ -34,6 +32,8 @@ class MessageLog:
     router: str
     method: str
     event_type: str
+    timestamp: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 
 def create_log_json(
